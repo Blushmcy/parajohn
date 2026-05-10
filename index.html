@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feliz cumpleaños ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Press Start 2P', cursive;
+  background: url("fondo.png") center/cover no-repeat fixed;
+  color: white;
+  text-align: center;
+}
+
+/* capa oscura elegante */
+.overlay {
+  background: rgba(0,0,0,0.5);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* título */
+h1 {
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+/* tarjetas */
+.card {
+  background: rgba(255,255,255,0.9);
+  color: black;
+  max-width: 420px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  animation: fadeIn 0.6s ease;
+}
+
+/* animación suave */
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+/* botones elegantes */
+button {
+  padding: 12px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #00b894;
+  color: white;
+  font-size: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #019875;
+  transform: scale(1.05);
+}
+
+/* burbuja estilo cute */
+.bubble {
+  background: white;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+/* dino simple */
+.dino {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.hidden { display: none; }
+
+/* corazones suaves */
+.heart {
+  position: fixed;
+  font-size: 18px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to { transform: translateY(100vh); opacity:0; }
+}
+</style>
+
+</head>
+<body>
+
+<div class="overlay">
+
+<h1>🌿 FELIZ CUMPLEAÑOS MI AMORCITO 🌿</h1>
+
+<div id="nivel1" class="card">
+  <div class="bubble">Oye… tengo algo que decirte 💚</div>
+  <img src="https://i.imgur.com/6X12F3B.png" class="dino">
+  <p>¿Qué eres para mí?</p>
+  <button onclick="next(1)">Mi todo 💕</button>
+  <button onclick="error()">Un npc 🤨</button>
+</div>
+
+<div id="nivel2" class="card hidden">
+  <div class="bubble">Ok… vas bien 😳</div>
+  <img src="https://i.imgur.com/6X12F3B.png" class="dino">
+  <p>¿Quién es mi persona favorita?</p>
+  <button onclick="next(2)">Tú 💖</button>
+  <button onclick="error()">Otro 😡</button>
+</div>
+
+<div id="nivel3" class="card hidden">
+  <div class="bubble">Última cosita… 💘</div>
+  <img src="https://i.imgur.com/6X12F3B.png" class="dino">
+  <button onclick="final()">Abrir regalo 🎁</button>
+</div>
+
+<div id="final" class="card hidden">
+  <h2>🎉 FELIZ CUMPLEAÑOS 🎉</h2>
+  <p>Has completado el juego 💘</p>
+  <p>Te quiero muchísimo ❤️</p>
+</div>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+function next(n){
+  document.getElementById("nivel"+n).classList.add("hidden");
+  document.getElementById("nivel"+(n+1)).classList.remove("hidden");
+}
+
+function error(){
+  document.getElementById("msg").innerText = "😡 intenta otra vez";
+}
+
+function final(){
+  document.getElementById("nivel3").classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
+  hearts();
+}
+
+function hearts(){
+  setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration="4s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),4000);
+  },300);
+}
+</script>
+
+</body>
+</html>
