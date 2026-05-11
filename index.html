@@ -78,17 +78,17 @@ button:hover {
 }
 
 /* corazones finales */
-.heart {
-  position: fixed;
-  top: -10px;
-  font-size: 20px;
-  animation: caer linear forwards;
+ position:fixed;
+  font-size:20px;
+  pointer-events:none;
+  z-index:9999;
 }
-
-@keyframes caer {
-  to {
-    transform: translateY(100vh);
-    opacity: 0;
+@keyframes fall{
+  from{
+    transform:translateY(0);
+  }
+  to{
+    transform:translateY(110vh);
   }
 }
 </style>
@@ -171,14 +171,17 @@ function final(){
 
 function lluvia(){
   setInterval(()=>{
-    let h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="💖";
-    h.style.left=Math.random()*100+"vw";
-    h.style.animationDuration=(Math.random()*2+3)+"s";
+     const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "💖";
+    const x = Math.random() * document.body.getBoundingClientRect().width;
+    h.style.position = "fixed";
+    h.style.left = x + "px";
+    h.style.top = "-30px";
+    h.style.animation = `fall ${2 + Math.random()*3}s linear forwards`;
     document.body.appendChild(h);
-    setTimeout(()=>h.remove(),5000);
-  },200);
+    setTimeout(()=>h.remove(),6000);
+  },120);
 }
 </script>
 
